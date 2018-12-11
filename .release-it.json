@@ -1,0 +1,20 @@
+{
+  "src": {
+    "tagName": "v%s",
+    "commitMessage": "docs: release ${version}"
+  },
+  "github": {
+    "release": true
+  },
+  "npm": {
+    "publish": true,
+    "private": false,
+    "access": "public"
+  },
+  "increment": "conventional:angular",
+  "beforeChangelogCommand": "conventional-changelog -p angular -i CHANGELOG.md -s",
+  "changelogCommand": "conventional-changelog -p angular | tail -n +3",
+  "safeBump": false,
+  "requireCleanWorkingDir": false,
+  "requireUpstream": false
+}

@@ -1,0 +1,25 @@
+{
+  "presets": ["@babel/env"],
+  "env": {
+    "development": {
+      "plugins": ["jsdoc-to-assert"]
+    },
+    "test": {
+      "plugins": ["rewire"]
+    },
+    "production": {
+      "presets": [
+        [
+          "@babel/env",
+          {
+            "loose": true,
+            "modules": false
+          }
+        ],
+        "minify"
+      ],
+      "plugins": ["@babel/plugin-transform-runtime"],
+      "comments": false
+    }
+  }
+}
