@@ -17,4 +17,4 @@ const absoluteLengthUnit = '(?:px|cm|mm|Q|in|pc|pt)'
  */
 export default `${number
   .replace(/\^/g, '')
-  .replace(/\$/g, '')}((${relativeLengthUnit})\\s*|${absoluteLengthUnit}\\s*)`
+  .replace(/\$/g, '')}(?:(?:${relativeLengthUnit})\\s*|${absoluteLengthUnit}\\s*)|0`
