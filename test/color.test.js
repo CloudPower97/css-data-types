@@ -1,11 +1,19 @@
 import color from 'types/color'
 
 describe('A <color> can be defined in any of the following ways:', () => {
-  const colorRegex = new RegExp(color, 'i')
+  const colorRegex = new RegExp(color)
 
   describe('Using a keyord', () => {
-    it('such as blue', () => {
-      expect(colorRegex.test('blue')).toBeTruthy()
+    it('such as navajowhite', () => {
+      expect(colorRegex.test('navajowhite')).toBeTruthy()
+    })
+
+    it('such as rebeccapurple', () => {
+      expect(colorRegex.test('rebeccapurple')).toBeTruthy()
+    })
+
+    it('such as mediumaquamarine', () => {
+      expect(colorRegex.test('mediumaquamarine')).toBeTruthy()
     })
 
     it('such as transparent', () => {
@@ -123,13 +131,13 @@ describe('A <color> can be defined in any of the following ways:', () => {
         })
       })
 
-      describe('with floats value', () => {
+      describe('without floats value', () => {
         it('rgb(255, 0, 153.6, 1)', () => {
-          expect(colorRegex.test('rgb(255, 0, 153.6, 1)')).toBeTruthy()
+          expect(colorRegex.test('rgb(255, 0, 153.6, 1)')).toBeFalsy()
         })
 
         it('rgb(1e2, .5e1, .5e0, +.25e2%)', () => {
-          expect(colorRegex.test('rgb(1e2, .5e1, .5e0, +.25e2%)')).toBeTruthy()
+          expect(colorRegex.test('rgb(1e2, .5e1, .5e0, +.25e2%)')).toBeFalsy()
         })
       })
     })
@@ -153,11 +161,11 @@ describe('A <color> can be defined in any of the following ways:', () => {
 
       describe('with floats value', () => {
         it('rgba(255, 0, 153.6, 1)', () => {
-          expect(colorRegex.test('rgba(255, 0, 153.6, 1)')).toBeTruthy()
+          expect(colorRegex.test('rgba(255, 0, 153.6, 1)')).toBeFalsy()
         })
 
         it('rgba(1e2, .5e1, .5e0, +.25e2%)', () => {
-          expect(colorRegex.test('rgba(1e2, .5e1, .5e0, +.25e2%)')).toBeTruthy()
+          expect(colorRegex.test('rgba(1e2, .5e1, .5e0, +.25e2%)')).toBeFalsy()
         })
       })
     })

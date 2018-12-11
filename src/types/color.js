@@ -1,8 +1,8 @@
-// TODO: Add functionalRgb and HSL/HSLA notation
 import percentage from './percentage'
 
 const percentageReplace = percentage.replace(/\^/g, '').replace(/\$/g, '')
 
+// TODO: Add HSL/HSLA notation
 const colors = [
   'black',
   'silver',
@@ -158,13 +158,30 @@ const colors = [
 
 const colorKeywords = `^(?:${colors.join(',').replace(/,/g, '|')}|transparent|currentColor)$`
 
-const rgbRangeRegex = `(?:[0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|${percentageReplace}`
-const alphaRange = `(?:\\.\\d+|(?:[0].\\d+)|[0]|[1](?:.[0]+)?)|${percentageReplace}`
-const hexNotation =
-  '^#[a-f0-9]{2}[a-f0-9]{2}[a-f0-9]{2}[a-f0-9]{0,2}$|^#[a-f0-9][a-f0-9][a-f0-9][a-f09]?$'
+const hexNotation = '^#(?:[A-Fa-f0-9]{6}([A-Fa-f0-9]{2})?$|[A-Fa-f0-9]{3}[A-Fa-f0-9]?)'
 
-const rgb = `^(?:rgb\\(${rgbRangeRegex}(?:,|\\s)\\s*${rgbRangeRegex}(?:,|\\s)\\s*${rgbRangeRegex}(?:(?:,|\\s)\\s*${alphaRange})?\\))$`
-const rgba = `rgba\\(${rgbRangeRegex}(,|\\s)\\s*${rgbRangeRegex}(,|\\s)\\s*${rgbRangeRegex}(,|\\s)\\s*${alphaRange}\\)`
-const functionalRgba = `^(?:rgba\\(${rgbRangeRegex}\\s${rgbRangeRegex}\\s${rgbRangeRegex}\\s\\/\\s${alphaRange}\\))$`
+/**
+ * R (red), G (green), and B (blue) can be either <integer>s or <percentage>s,
+ * where the number 255 corresponds to 100%.
+ */
+const rgbRange = '0*([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]){1,3}'
 
-export default `${hexNotation}|${rgb}|${rgba}|${functionalRgba}|${colorKeywords}`
+/**
+ * A (alpha) can be a <number> between 0 and 1,
+ * or a <percentage>, where the number 1 corresponds to 100% (full opacity).
+ */
+const alphaRange = `(?:(?:\\.\\d+|(?:[0].\\d+)|[0]|[1](?:.[0]+)?)|${percentageReplace})`
+
+/**
+ * We test both the rgb(R, G, B[, A]) and the CSS Colors Level 4 support for space-separated values rgb(R G B[ / A]) syntax
+ * We test that one doesn't mix integers and percentages as well.
+ */
+const rgb = `(?:rgb\\(${rgbRange}(,|\\s)\\s*${rgbRange}(,|\\s)\\s*${rgbRange}(,\\s*${alphaRange})?\\)|rgb\\(${percentageReplace}(,|\\s)\\s*${percentageReplace}(,|\\s)\\s*${percentageReplace}(,\\s*${alphaRange})?\\)|rgb\\(${rgbRange}\\s*${rgbRange}\\s*${rgbRange}(\\s*\\/\\s*${alphaRange})?\\))`
+
+/**
+ * We test both the rgba(R, G, B, A) and the CSS Colors Level 4 support for space-separated values rgba(R G B / A) syntax
+ * We test that one doesn't mix integers and percentages as well.
+ */
+const rgba = `(?:rgba\\(${rgbRange}(,|\\s)\\s*${rgbRange}(,|\\s)\\s*${rgbRange},\\s*${alphaRange}\\)|rgba\\(${percentageReplace}(,|\\s)\\s*${percentageReplace}(,|\\s)\\s*${percentageReplace},\\s*${alphaRange}\\)|rgba\\(${rgbRange}\\s*${rgbRange}\\s*${rgbRange}\\s*\\/\\s*${alphaRange}\\))`
+
+export default `${colorKeywords}|${hexNotation}|${rgb}|${rgba}`
