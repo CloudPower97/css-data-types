@@ -15,7 +15,7 @@ const shapeRadius = `(?:${shapeArg}|${percentageReplace}|closest-side|farthest-s
 const fillRule = '(?:nonzero|evenodd)'
 
 export const inset = `inset\\(${shapeArg}{1,4}|(${percentageReplace}\\s+){1,4}\\)`
-export const circle = `circle\\(${shapeRadius}?(at\\s+${positionReplace})?\\)`
-export const ellipse = `ellipse\\((?:${shapeRadius}{2})?(at\\s+${positionReplace})?\\)`
+export const circle = `circle\\(${shapeRadius}?(at\\s+(${positionReplace}))?\\)`
+export const ellipse = `ellipse\\((?:${shapeRadius}{2})?(at\\s+(${positionReplace}))?\\)`
 export const polygon = `polygon\\((?:${fillRule},\\s+)?(?:${shapeArg}{2}|(${percentageReplace}\\s+){2})*`
 export const path = `path\\((?:${fillRule},\\s+)?${stringReplace}\\)`
