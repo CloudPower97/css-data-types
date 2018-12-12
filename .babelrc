@@ -4,9 +4,6 @@
     "development": {
       "plugins": ["jsdoc-to-assert"]
     },
-    "test": {
-      "plugins": ["rewire"]
-    },
     "production": {
       "presets": [
         [
