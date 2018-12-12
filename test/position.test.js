@@ -27,20 +27,31 @@ describe('The <position> data type is specified with one or two keywords, with o
     it('8rem 14px', () => {
       expect(positionRegex.test('8rem 14px')).toBeTruthy()
     })
+
+    it('top 50% left 25px', () => {
+      expect(positionRegex.test('top 50% left 25px')).toBeTruthy()
+    })
   })
 
-  // FIXME: Temporarily removing failing tests
-  // describe('Invalid <position>s are:', () => {
-  //   it('left right', () => {
-  //     expect(positionRegex.test('left right')).toBeFalsy()
-  //   })
+  describe('Invalid <position>s are:', () => {
+    it('left right', () => {
+      expect(positionRegex.test('left right')).toBeFalsy()
+    })
 
-  //   it('bottom top', () => {
-  //     expect(positionRegex.test('bottom top')).toBeFalsy()
-  //   })
+    it('right left', () => {
+      expect(positionRegex.test('right left')).toBeFalsy()
+    })
 
-  //   it('10px 15px 20px 15px', () => {
-  //     expect(positionRegex.test('10px 15px 20px 15px')).toBeFalsy()
-  //   })
-  // })
+    it('bottom top', () => {
+      expect(positionRegex.test('bottom top')).toBeFalsy()
+    })
+
+    it('top bottom', () => {
+      expect(positionRegex.test('bottom top')).toBeFalsy()
+    })
+
+    it('10px 15px 20px 15px', () => {
+      expect(positionRegex.test('10px 15px 20px 15px')).toBeFalsy()
+    })
+  })
 })
