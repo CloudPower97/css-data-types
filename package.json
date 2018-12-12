@@ -6,7 +6,6 @@
   "scripts": {
     "clean": "rimraf lib",
     "dev": "build:watch",
-    "pretest": "npm-run-all build",
     "test:coverage": "cross-env BABEL_ENV=test jest --env=jsdom --coverage && cat ./coverage/lcov.info | codacy-coverage && rm -rf ./coverage",
     "test:unit": "cross-env BABEL_ENV=test jest --env=jsdom",
     "test:unit:watch": "cross-env BABEL_ENV=test jest --env=jsdom --watch",
@@ -67,7 +66,6 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-jsdoc-to-assert": "^4.0.0",
-    "babel-plugin-rewire": "^1.2.0",
     "babel-preset-minify": "^0.5.0",
     "codacy-coverage": "^3.3.0",
     "conventional-changelog-cli": "^2.0.11",
@@ -83,7 +81,6 @@
     "prettier": "^1.15.3",
     "regenerator-runtime": "^0.13.1",
     "release-it": "^8.2.0",
-    "rewire": "^4.0.1",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
