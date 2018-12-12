@@ -183,28 +183,20 @@ const colorKeywords = `^(?:${colors.join(',').replace(/,/g, '|')}|transparent|cu
 const hexNotation = '^#(?:[A-Fa-f0-9]{6}([A-Fa-f0-9]{2})?$|[A-Fa-f0-9]{3}[A-Fa-f0-9]?)'
 
 /**
- * R (red), G (green), and B (blue) can be either <integer>s or <percentage>s,
- * where the number 255 corresponds to 100%.
- */
-const rgbRange = '0*([0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]){1,3}'
-
-/**
  * A (alpha) can be a <number> between 0 and 1,
  * or a <percentage>, where the number 1 corresponds to 100% (full opacity).
  */
 const alphaRange = `(?:(?:\\.\\d+|(?:[0].\\d+)|[0]|[1](?:.[0]+)?)|${percentageReplace})`
 
 /**
- * We test both the rgb(R, G, B[, A]) and the CSS Colors Level 4 support for space-separated values rgb(R G B[ / A]) syntax
+ * R (red), G (green), and B (blue) can be either <integer>s or <percentage>s, where the number 255 corresponds to 100%.
+ * A (alpha) can be a <number> between 0 and 1, or a <percentage>, where the number 1 corresponds to 100% (full opacity).
+ * We test both the rgb(R, G, B[, A])/rgba(R, G, B, A) and the CSS Colors Level 4 support for space-separated values rgb(R G B[ / A])/rgba(R G B / A) syntax
  * We test that one doesn't mix integers and percentages as well.
  */
-const rgb = `(?:rgb\\(${rgbRange}(,|\\s)\\s*${rgbRange}(,|\\s)\\s*${rgbRange}(,\\s*${alphaRange})?\\)|rgb\\(${percentageReplace}(,|\\s)\\s*${percentageReplace}(,|\\s)\\s*${percentageReplace}(,\\s*${alphaRange})?\\)|rgb\\(${rgbRange}\\s*${rgbRange}\\s*${rgbRange}(\\s*\\/\\s*${alphaRange})?\\))`
-
-/**
- * We test both the rgba(R, G, B, A) and the CSS Colors Level 4 support for space-separated values rgba(R G B / A) syntax
- * We test that one doesn't mix integers and percentages as well.
- */
-const rgba = `(?:rgba\\(${rgbRange}(,|\\s)\\s*${rgbRange}(,|\\s)\\s*${rgbRange},\\s*${alphaRange}\\)|rgba\\(${percentageReplace}(,|\\s)\\s*${percentageReplace}(,|\\s)\\s*${percentageReplace},\\s*${alphaRange}\\)|rgba\\(${rgbRange}\\s*${rgbRange}\\s*${rgbRange}\\s*\\/\\s*${alphaRange}\\))`
+const rgbRange = '0*(?:[0-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]){1,3}'
+const rgb = `(?:^rgb\\(${rgbRange},\\s*${rgbRange},\\s*${rgbRange}(,\\s*${alphaRange})?\\)$|^rgb\\(${percentageReplace},\\s*${percentageReplace},\\s*${percentageReplace}(,\\s*${alphaRange})?\\)$|^rgb\\(${rgbRange}\\s*${rgbRange}\\s*${rgbRange}(\\s*\\/\\s*${alphaRange})?\\)$)`
+const rgba = `(?:^rgba\\(${rgbRange},\\s*${rgbRange},\\s*${rgbRange},\\s*${alphaRange}\\)$|^rgba\\(${percentageReplace},\\s*${percentageReplace},\\s*${percentageReplace},\\s*${alphaRange}\\)$|^rgba\\(${rgbRange}\\s*${rgbRange}\\s*${rgbRange}\\s*\\/\\s*${alphaRange}\\)$)`
 
 /**
  * HSL colors are expressed through the functional hsl() and hsla() notations.
