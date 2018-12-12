@@ -210,4 +210,4 @@ const rgba = `(?:^rgba\\(${rgbRange},\\s*${rgbRange},\\s*${rgbRange},\\s*${alpha
 const hsl = `(?:^hsl\\((${angleReplace}|${numberReplace}),\\s*${percentageReplace},\\s*${percentageReplace}(,\\s*${alphaRange})?\\)$|^hsl\\((${angleReplace}|${numberReplace})\\s+${percentageReplace}\\s+${percentageReplace}(\\s+\\/\\s+${alphaRange})?\\)$)`
 const hsla = `(?:^hsla\\((${angleReplace}|${numberReplace}),\\s*${percentageReplace},\\s*${percentageReplace},\\s*${alphaRange}\\)$|^hsla\\((${angleReplace}|${numberReplace})\\s+${percentageReplace}\\s+${percentageReplace}\\s+\\/\\s+${alphaRange}\\)$)`
 
-export default `${colorKeywords}|${hexNotation}|${rgb}|${rgba}|${hsl}|${hsla}`
+export default `(${colorKeywords}|${hexNotation}|${rgb}|${rgba}|${hsl}|${hsla})`
