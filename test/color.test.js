@@ -172,8 +172,78 @@ describe('A <color> can be defined in any of the following ways:', () => {
   })
 
   describe('Using the HSL cylindrical-coordinate system', () => {
-    describe('via the hsl() functional notation', () => {})
+    describe('via the hsl() functional notation', () => {
+      it('hsl(270,60%,70%)', () => {
+        expect(colorRegex.test('hsl(270,60%,70%)')).toBeTruthy()
+      })
 
-    describe('via the hsla() functional notation', () => {})
+      it('hsl(270, 60%, 70%)', () => {
+        expect(colorRegex.test('hsl(270, 60%, 70%)')).toBeTruthy()
+      })
+
+      it('hsl(270 60% 70%)', () => {
+        expect(colorRegex.test('hsl(270 60% 70%)')).toBeTruthy()
+      })
+
+      it('hsl(270deg, 60%, 70%)', () => {
+        expect(colorRegex.test('hsl(270deg, 60%, 70%)')).toBeTruthy()
+      })
+
+      it('hsl(4.71239rad, 60%, 70%)', () => {
+        expect(colorRegex.test('hsl(4.71239rad, 60%, 70%)')).toBeTruthy()
+      })
+
+      it('hsl(.75turn, 60%, 70%)', () => {
+        expect(colorRegex.test('hsl(.75turn, 60%, 70%)')).toBeTruthy()
+      })
+
+      it('hsl(270, 60%, 50%, .15)', () => {
+        expect(colorRegex.test('hsl(270, 60%, 50%, .15)')).toBeTruthy()
+      })
+
+      it('hsl(270, 60%, 50%, 15%)', () => {
+        expect(colorRegex.test('hsl(270, 60%, 50%, 15%)')).toBeTruthy()
+      })
+
+      it('hsl(270 60% 50% / .15)', () => {
+        expect(colorRegex.test('hsl(270 60% 50% / .15)')).toBeTruthy()
+      })
+
+      it('hsl(270 60% 50% / 15%)', () => {
+        expect(colorRegex.test('hsl(270 60% 50% / 15%)')).toBeTruthy()
+      })
+    })
+
+    describe('via the hsla() functional notation', () => {
+      it('hsla(240, 100%, 50%, .05)', () => {
+        expect(colorRegex.test('hsla(240, 100%, 50%, .05)')).toBeTruthy()
+      })
+
+      it('hsla(240, 100%, 50%, .4)', () => {
+        expect(colorRegex.test('hsla(240, 100%, 50%, .4)')).toBeTruthy()
+      })
+
+      it('hsla(240, 100%, 50%, .7)', () => {
+        expect(colorRegex.test('hsla(240, 100%, 50%, .7)')).toBeTruthy()
+      })
+
+      it('hsla(240, 100%, 50%, 1)', () => {
+        expect(colorRegex.test('hsla(240, 100%, 50%, 1)')).toBeTruthy()
+      })
+
+      /**
+       * Whitespace syntax
+       */
+      it('hsla(240 100% 50% / .05)', () => {
+        expect(colorRegex.test('hsla(240 100% 50% / .05)')).toBeTruthy()
+      })
+
+      /**
+       * Percentage value for alpha
+       */
+      it('hsla(240 100% 50% / 5%)', () => {
+        expect(colorRegex.test('hsla(240 100% 50% / 5%)')).toBeTruthy()
+      })
+    })
   })
 })
