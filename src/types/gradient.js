@@ -23,14 +23,21 @@ const angleReplace = angle.replace(/\^/g, '').replace(/\$/g, '')
  */
 const sideOrCorner = '(?:top|right|bottom|left)'
 
-const colorStopLength = `((${percentageReplace}|${lengthReplace}){1,2})`
+/**
+ * Optional stop positions, either a <percentage> or a <length>.
+ */
+const colorStopLength = `(${percentageReplace}|${lengthReplace})`
 
 /**
  * A color-stop's <color> value, followed by one or two optional stop positions,
  * (each being either a <percentage> or a <length> along the gradient's axis).
  */
-const linearColorStop = `(?:${colorReplace}(\\s+${colorStopLength})?)`
+const linearColorStop = `((?:${colorReplace}(\\s+${colorStopLength})?)|(?:${colorReplace}(\\s+${colorStopLength}){1,2})?)`
 
+/**
+ * The color-hint is an interpolation hint defining how the gradient progresses between adjacent color stops.
+ * The length defines at which point between two color stops the gradient color should reach the midpoint of the color transition.
+ */
 const colorHint = `(?:${percentageReplace}|${lengthReplace})`
 
 const colorStopList = `(((?:${linearColorStop}\\s*(,\\s+${colorHint})?)+)?,\\s*${linearColorStop})`
