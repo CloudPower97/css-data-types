@@ -19,5 +19,21 @@ describe('The <gradient> data type is defined with one of the function types lis
         linearGradientRegex.test('linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%)')
       ).toBeTruthy()
     })
+
+    it('linear-gradient(to right, red 20%, orange 20% 40 %, yellow 40% 60%, green 60% 80%, blue 80%)', () => {
+      expect(
+        linearGradientRegex.test(
+          'linear-gradient(to right, red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%)'
+        )
+      ).toBeTruthy()
+    })
+
+    it('linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%)', () => {
+      expect(
+        linearGradientRegex.test(
+          'linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%)'
+        )
+      ).toBeTruthy()
+    })
   })
 })
