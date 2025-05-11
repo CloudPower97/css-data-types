@@ -84,7 +84,7 @@
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.2.0"
+    "@babel/runtime": "^7.26.10"
   },
   "jest": {
     "verbose": true,
